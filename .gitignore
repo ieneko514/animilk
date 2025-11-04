@@ -2,3 +2,8 @@
 /*.qrc.depends
 /qrc_*.cpp
 /res.py
+
+# WebAssembly
+/*.d
+/*.o
+/*.wasm
