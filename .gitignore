@@ -1,0 +1,4 @@
+# Qt
+/*.qrc.depends
+/qrc_*.cpp
+/res.py
