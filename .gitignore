@@ -1,7 +1,9 @@
 # Qt
 /*.qrc.depends
+/ui_*.h
 /qrc_*.cpp
 /res.py
+/ui_*.py
 
 # WebAssembly
 /*.d
