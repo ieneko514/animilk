@@ -4,6 +4,7 @@ import sys
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 from PySide6.QtWidgets import QWidget
+from anime_chooser import AnimeChooserFragment
 import res
 
 def main() -> int:
@@ -18,6 +19,7 @@ def main() -> int:
   app.setWindowIcon(QIcon(':/animilk/icon.png'))
 
   window = QWidget()
+  x = AnimeChooserFragment(window)
   window.show()
 
   return app.exec()
