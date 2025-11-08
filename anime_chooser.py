@@ -1,10 +1,13 @@
 import traceback
 import sys
+from PySide6.QtCore import QEventLoop
 from PySide6.QtCore import QObject
 from PySide6.QtCore import QTimer
 from PySide6.QtCore import Slot
+from PySide6.QtWidgets import QListWidgetItem
 from PySide6.QtWidgets import QMessageBox
 from PySide6.QtWidgets import QWidget
+from anime_manager import AnimeManagerFragment
 from database import Anime
 from database import db_read_anime_list
 from new_anime import NewAnimeFragment
@@ -38,6 +41,7 @@ class AnimeChooserFragment(QObject):
 
     self._ui.lineEdit.setFocus()
     self._ui.lineEdit.textEdited.connect(self._sched_upd_list)
+    self._ui.listWidget.itemDoubleClicked.connect(self._do_enter_manager)
     self._ui.pushButton_create.clicked.connect(self._do_new_anime)
     self._new_anime_fragment.creationComplete.connect(self._new_anime_cb)
 
@@ -87,3 +91,15 @@ class AnimeChooserFragment(QObject):
     self._sort()
 
     self._refresh_list()
+
+  @Slot(QListWidgetItem)
+  def _do_enter_manager(self, item: QListWidgetItem):
+    idx = self._ui.listWidget.indexFromItem(item).row()
+
+    window = QWidget()
+    x = AnimeManagerFragment(window, self._on_screen_list[idx])
+
+    window.show()
+    self._base.close()
+
+    QEventLoop().exec()
