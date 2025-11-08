@@ -12,6 +12,7 @@ add_custom_target(res_py ALL
 qt6_wrap_ui(UI_SRCS
   anime_chooser.ui
   new_anime.ui
+  anime_manager.ui
   OPTIONS -g python)
 
 foreach(UI_SRC IN LISTS UI_SRCS)
